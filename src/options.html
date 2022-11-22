@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Nullforce Booru Extension</title>
+    <link rel="stylesheet" href="button.css">
+</head>
+
+<body>
+    <h1>Booru Options</h1>
+    <p>
+        <label>
+            <input id="showArtist" type="checkbox">
+            Show artist(s)
+        </label>
+    </p>
+    <p>
+        <label>
+            <input id="showTags" type="checkbox">
+            Show tags
+        </label>
+    </p>
+    <p>
+        <label>
+            <input id="showHighlightTags" type="checkbox">
+            Show highlight tags
+        </label>
+    </p>
+    <p>
+        <label>
+            Tags to show in header (one per line):<br />
+            <textarea id="headerTags" rows="10"></textarea>
+        </label>
+    </p>
+    <p>
+        <label>
+            Highlight tags color:
+            <div id="buttonDiv"></div>
+        </label>
+    </p>
+    <p>
+        <label>
+            Highlight tags (one per line):<br />
+            <textarea id="highlightTags" rows="5"></textarea>
+        </label>
+    </p>
+
+    <h1>Eagle Options</h1>
+    <p>
+        <label>
+            <input id="eagleEnabled" type="checkbox" checked="true">
+            Enable Eagle Integration
+        </label>
+    </p>
+    <p>
+        <label>
+            <input id="eagleDownloadButton" type="checkbox" checked="true">
+            Show Eagle download button
+        </label>
+    </p>
+    <p>
+        <label>
+            <input id="eagleDownloadFavorite" type="checkbox" checked="true">
+            Download faved image to Eagle
+        </label>
+    </p>
+
+    <div id="status"></div>
+
+    <p>
+        <button id="save">Save</button>
+    </p>
+</body>
+<script type="module" src="options.js"></script>
+
+</html>

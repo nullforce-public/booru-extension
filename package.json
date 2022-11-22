@@ -1,0 +1,24 @@
+{
+  "name": "nullforce-booru-extension",
+  "version": "0.1.0",
+  "description": "Extends the functionality of image booru sites. Integrates with Eagle DAM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "booru",
+    "derpibooru",
+    "manebooru",
+    "chrome",
+    "extension"
+  ],
+  "author": "nullforce",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/chrome": "^0.0.202",
+    "gulp": "^4.0.0",
+    "gulp-typescript": "^6.0.0-alpha.1",
+    "typescript": "^4.9.3"
+  }
+}

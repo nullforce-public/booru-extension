@@ -1,0 +1,11 @@
+{
+    "include": [
+        "src/**/*.ts"
+    ],
+    "compilerOptions": {
+        "module": "ES2020",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "target": "ES2020",
+    }
+}
