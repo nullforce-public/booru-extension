@@ -10,13 +10,36 @@ function getEagle() {
     request.send();
 }
 
-function addToEagleFromURL(
+async function isInEagle(name: string, website: string): Promise<boolean> {
+    const url = "http://localhost:41595/api/item/list?" + "name=" + encodeURIComponent(name);
+    const response = await fetch(url, { method: "GET" });
+    const json = await response.json();
+
+    if (json.status === "success") {
+        for (const item of json.data) {
+            if (item.url === website) {
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+async function addToEagleFromURL(
     url: string,
     name: string,
     website: string,
     tags: string[],
     annotation: string,
-    folder: string | undefined = undefined) {
+    folder: string | undefined = undefined): Promise<void> {
+
+    console.log("nfDerpi: Checking if image is already in Eagle..." + name + " " + website);
+    if (await isInEagle(name, website)) {
+        console.log("nfDerpi: Already in Eagle");
+        return;
+    }
+
     console.log("nfDerpi: Adding to Eagle");
     const message: IBackgroundMessage = {
         action: "addToEagleFromUrl",
@@ -199,8 +222,12 @@ async function modifyShowImagePage(settings: ISettings): Promise<void> {
                 strechedMobileLinks.classList.add("stretched-mobile-links");
                 let eagleButton = document.createElement("a");
                 eagleButton.title = "Save to Eagle";
+                eagleButton.style.cssText = await isInEagle(id, source)
+                    ? "color: limegreen;"
+                    : "";
                 eagleButton.onclick = function () {
                     addToEagleFromURL(uri, id || "image", source, tags, description);
+                    eagleButton.style.cssText = "color: limegreen;";
                 };
                 let iconNode = document.createElement("i");
                 iconNode.classList.add("fa", "fa-download");
@@ -257,8 +284,12 @@ async function modifyPage(settings: any): Promise<void> {
 
                 if (header) {
                     target = header;
-                    header.style.minHeight = "75px";
-                    header.style.maxHeight = "75px";
+                    if (settings.showArtist || settings.showTags) {
+                        header.style.minHeight = "75px";
+                        header.style.maxHeight = "75px";
+
+                        header.parentElement.style.maxHeight = "none";
+                    }
                 }
 
                 if (settings.showArtist && artistTags) {
