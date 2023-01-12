@@ -252,6 +252,11 @@ async function modifyShowImagePage(settings: ISettings): Promise<void> {
                 }
             }
         }
+
+        if (settings.eagleAutoSave) {
+            // Add to Eagle on Load
+            addToEagleFromURL(uri, id || "image", source, tags, description);
+        }
     }
 
     console.log("nfDerpi: Tags: " + tags);

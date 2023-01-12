@@ -17,6 +17,7 @@ const highlightTagsElement = document.getElementById("highlightTags") as HTMLInp
 const eagleEnabledElement = document.getElementById("eagleEnabled") as HTMLInputElement;
 const eagleDownloadButtonElement = document.getElementById("eagleDownloadButton") as HTMLInputElement;
 const eagleDownloadFavoriteElement = document.getElementById("eagleDownloadFavorite") as HTMLInputElement;
+const eagleAutoSaveElement = document.getElementById(("eagleAutoSave")) as HTMLInputElement;
 
 // Save options to chrome.storage
 async function saveOptions() {
@@ -29,6 +30,7 @@ async function saveOptions() {
     const eagleEnabled = eagleEnabledElement.checked;
     const eagleDownloadButton = eagleDownloadButtonElement.checked;
     const eagleDownloadFavorite = eagleDownloadFavoriteElement.checked;
+    const eagleAutoSave = eagleAutoSaveElement.checked;
 
     await setSettings({
         showArtist,
@@ -39,7 +41,8 @@ async function saveOptions() {
         color: "#3aa757",
         eagleEnabled,
         eagleDownloadButton,
-        eagleDownloadFavorite
+        eagleDownloadFavorite,
+        eagleAutoSave
     });
 
     const status = document.getElementById("status");
@@ -67,6 +70,7 @@ async function loadOptions() {
     eagleEnabledElement.checked = settings.eagleEnabled;
     eagleDownloadButtonElement.checked = settings.eagleDownloadButton;
     eagleDownloadFavoriteElement.checked = settings.eagleDownloadFavorite;
+    eagleAutoSaveElement.checked = settings.eagleAutoSave;
 }
 
 function handleButtonClick(event: any) {
