@@ -93,6 +93,22 @@ function getSiteTag(): string | undefined {
     return undefined;
 }
 
+function getSitePrefix(): string {
+    switch (document.location.hostname) {
+        case "derpibooru.org":
+            return "";
+        case "manebooru.art":
+            return "mb";
+        case "ponerpics.org":
+            return "pp";
+        case "ponybooru.org":
+            return "pb";
+        case "twibooru.org":
+            return "tb";
+    }
+    return "";
+}
+
 function getTags(element: HTMLElement): string[] {
     const keywordsMeta = document.querySelector("meta[name='keywords']") as HTMLMetaElement;
     const tags = keywordsMeta
@@ -129,7 +145,7 @@ function getTitle(element: HTMLElement) {
 }
 
 function getImageId(element: HTMLElement) {
-    const id = element.getAttribute("data-image-id");
+    const id = getSitePrefix() + element.getAttribute("data-image-id");
     return id;
 }
 
