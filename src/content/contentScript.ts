@@ -1,5 +1,5 @@
-import { IBackgroundMessage, sendBackgroundMessage } from "./backgroundMessage.js";
-import { ISettings, getSettings } from "./settings.js";
+import { IBackgroundMessage, sendBackgroundMessage } from "./backgroundMessage.ts";
+import { ISettings, getSettings } from "./settings.ts";
 
 function getEagle() {
     var request = new XMLHttpRequest();
@@ -346,3 +346,5 @@ export async function main(): Promise<void> {
         modifyPage(settings);
     }
 }
+
+main();

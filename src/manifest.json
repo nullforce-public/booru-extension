@@ -1,10 +1,10 @@
 {
     "name": "Nullforce Booru Extension",
     "description": "Extends the functionality of image booru sites. Integrates with Eagle DAM.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "manifest_version": 3,
     "background": {
-        "service_worker": "background.js",
+        "service_worker": "background.ts",
         "type": "module"
     },
     "content_scripts": [
@@ -18,7 +18,7 @@
             ],
             "css": [],
             "js": [
-                "contentScriptLoader.js"
+                "content/contentScript.ts"
             ],
             "run_at": "document_idle"
         }
@@ -33,7 +33,7 @@
                 "https://twibooru.org/*"
             ],
             "resources": [
-                "content/*"
+                "./content/*"
             ]
         }
     ],
@@ -45,19 +45,21 @@
         "http://localhost:41595/"
     ],
     "action": {
-        "default_popup": "options.html",
+        "default_popup": "options/options.html",
         "default_icon": {
-            "16": "/images/icon16.png",
-            "32": "/images/icon32.png",
-            "48": "/images/icon48.png",
-            "128": "/images/icon128.png"
+            "16": "images/icon16.png",
+            "32": "images/icon32.png",
+            "48": "images/icon48.png",
+            "128": "images/icon128.png"
         }
     },
     "icons": {
-        "16": "/images/icon16.png",
-        "32": "/images/icon32.png",
-        "48": "/images/icon48.png",
-        "128": "/images/icon128.png"
+        "16": "images/icon16.png",
+        "32": "images/icon32.png",
+        "48": "images/icon48.png",
+        "128": "images/icon128.png"
     },
-    "options_page": "options.html"
+    "options_ui": {
+        "page": "options/options.html"
+    }
 }

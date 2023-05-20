@@ -1,4 +1,4 @@
-import { ISettings, getSettings, setSettings } from "./content/settings.js";
+import { ISettings, getSettings, setSettings } from "../content/settings.ts";
 const page = document.getElementById("buttonDiv");
 const selectedClassName = "current";
 const presetButtonColors = [

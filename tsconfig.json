@@ -3,7 +3,9 @@
         "src/**/*.ts"
     ],
     "compilerOptions": {
+        "allowImportingTsExtensions": true,
         "module": "ES2020",
+        "moduleResolution": "bundler",
         "noImplicitAny": true,
         "removeComments": true,
         "target": "ES2020",

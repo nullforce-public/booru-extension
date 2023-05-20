@@ -22,3 +22,19 @@ We support saving images to the [Eagle](https://eagle.cool/) digital asset manag
 ### Requirements
 
 Eagle must be running on the same computer as the browser extension and must be listening to API requests at [http://localhost:41595/](http://localhost:41595/).
+
+## Building and Running Locally
+
+Install NPM packages
+
+```pwsh
+npm install
+```
+
+Build
+
+```pwsh
+npm run build
+```
+
+In the browser, load unpacked extension from the `./dist` folder.
