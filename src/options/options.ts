@@ -1,4 +1,4 @@
-import { ISettings, getSettings, setSettings } from "../content/settings.ts";
+import { getSettings, setSettings } from "../shared/settings.ts";
 const page = document.getElementById("buttonDiv");
 const selectedClassName = "current";
 const presetButtonColors = [
@@ -18,6 +18,7 @@ const eagleEnabledElement = document.getElementById("eagleEnabled") as HTMLInput
 const eagleDownloadButtonElement = document.getElementById("eagleDownloadButton") as HTMLInputElement;
 const eagleDownloadFavoriteElement = document.getElementById("eagleDownloadFavorite") as HTMLInputElement;
 const eagleAutoSaveElement = document.getElementById(("eagleAutoSave")) as HTMLInputElement;
+const eagleApiTokenElement = document.getElementById(("eagleApiToken")) as HTMLInputElement;
 
 // Save options to chrome.storage
 async function saveOptions() {
@@ -31,6 +32,7 @@ async function saveOptions() {
     const eagleDownloadButton = eagleDownloadButtonElement.checked;
     const eagleDownloadFavorite = eagleDownloadFavoriteElement.checked;
     const eagleAutoSave = eagleAutoSaveElement.checked;
+    const eagleApiToken = eagleApiTokenElement.value;
 
     await setSettings({
         showArtist,
@@ -42,7 +44,8 @@ async function saveOptions() {
         eagleEnabled,
         eagleDownloadButton,
         eagleDownloadFavorite,
-        eagleAutoSave
+        eagleAutoSave,
+        eagleApiToken,
     });
 
     const status = document.getElementById("status");
@@ -71,6 +74,7 @@ async function loadOptions() {
     eagleDownloadButtonElement.checked = settings.eagleDownloadButton;
     eagleDownloadFavoriteElement.checked = settings.eagleDownloadFavorite;
     eagleAutoSaveElement.checked = settings.eagleAutoSave;
+    eagleApiTokenElement.value = settings.eagleApiToken;
 }
 
 function handleButtonClick(event: any) {

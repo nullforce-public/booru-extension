@@ -1,5 +1,5 @@
 import { GetEagleMessage, IBackgroundMessage, sendBackgroundMessage } from "../shared/backgroundMessage";
-import { ISettings, getSettings } from "./settings.ts";
+import { ISettings, getSettings } from "../shared/settings.ts";
 
 function getEagle(): void {
     const message: GetEagleMessage = {
@@ -12,9 +12,13 @@ function getEagle(): void {
 }
 
 async function isInEagle(name: string, website: string): Promise<boolean> {
-    const url = "http://localhost:41595/api/item/list?" + "name=" + encodeURIComponent(name);
+    const settings = await getSettings();
+
+    const url = "http://localhost:41595/api/item/list?" + "name=" + encodeURIComponent(name) + `&token=${settings.eagleApiToken}`;
     const response = await fetch(url, { method: "GET" });
     const json = await response.json();
+
+    console.log(`nfDerpi: ${url}`);
 
     if (json.status === "success") {
         for (const item of json.data) {

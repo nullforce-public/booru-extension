@@ -9,6 +9,7 @@ export interface ISettings {
     eagleDownloadButton: boolean;
     eagleDownloadFavorite: boolean;
     eagleAutoSave: boolean;
+    eagleApiToken: string;
 }
 
 export async function getSettings(): Promise<ISettings> {
@@ -23,7 +24,8 @@ export async function getSettings(): Promise<ISettings> {
         eagleEnabled: true,
         eagleDownloadButton: true,
         eagleDownloadFavorite: true,
-        eagleAutoSave: false
+        eagleAutoSave: false,
+        eagleApiToken: ""
     })
         .then((settings) => {
             console.log("nfDerpi: Settings internal: " + JSON.stringify(settings));
@@ -37,7 +39,8 @@ export async function getSettings(): Promise<ISettings> {
                 eagleEnabled: settings.eagleEnabled,
                 eagleDownloadButton: settings.eagleDownloadButton,
                 eagleDownloadFavorite: settings.eagleDownloadFavorite,
-                eagleAutoSave: settings.eagleAutoSave
+                eagleAutoSave: settings.eagleAutoSave,
+                eagleApiToken: settings.eagleApiToken,
             }
             return result;
         });
@@ -54,6 +57,7 @@ export function setSettings(settings: ISettings): Promise<void> {
         eagleEnabled: settings.eagleEnabled,
         eagleDownloadButton: settings.eagleDownloadButton,
         eagleDownloadFavorite: settings.eagleDownloadFavorite,
-        eagleAutoSave: settings.eagleAutoSave
+        eagleAutoSave: settings.eagleAutoSave,
+        eagleApiToken: settings.eagleApiToken,
     });
 }

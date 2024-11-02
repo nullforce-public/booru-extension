@@ -8,7 +8,11 @@ export interface AddToEagleFromUrlMessage extends IBackgroundMessage {
     action: "addToEagleFromUrl";
     data: {
         url: string;
-        imageUrls: string[];
+        name: string;
+        website: string;
+        tags: string[];
+        annotation: string;
+        folder: string;
     };
 }
 
