@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "Extends the functionality of image booru sites. Integrates with Eagle DAM.",
   "scripts": {
-    "clean": "pwsh -Command \"Remove-Item -Recurse -Force dist/*, .parcel-cache/*\"",
+    "clean": "pwsh -Command \"Remove-Item -Recurse -Force -ErrorAction Ignore dist/*, .parcel-cache/*\"",
     "start": "parcel watch src/manifest.json",
-    "build": "npm run clean && parcel build src/manifest.json",
+    "build": "parcel build src/manifest.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
