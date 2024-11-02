@@ -1,13 +1,14 @@
-import { IBackgroundMessage, sendBackgroundMessage } from "./backgroundMessage.ts";
+import { GetEagleMessage, IBackgroundMessage, sendBackgroundMessage } from "../shared/backgroundMessage";
 import { ISettings, getSettings } from "./settings.ts";
 
-function getEagle() {
-    var request = new XMLHttpRequest();
-    request.open("GET", "http://localhost:41595/api/application/info");
-    request.onload = function () {
-        console.log(request.responseText);
+function getEagle(): void {
+    const message: GetEagleMessage = {
+        action: "getEagle",
+        data: {}
     }
-    request.send();
+
+    console.log("nfDerpi: Getting Eagle");
+    sendBackgroundMessage(message);
 }
 
 async function isInEagle(name: string, website: string): Promise<boolean> {
@@ -184,12 +185,29 @@ function getImageDescription(imageContainer: HTMLElement) {
     const descriptionContainer = document.querySelector("div.image-description__text");
 
     if (descriptionContainer) {
+        descriptionLines.push("-----")
         const descriptionElements = descriptionContainer.children;
         for (const node of descriptionElements) {
             descriptionLines.push(node.textContent || "");
         }
 
         const links = document.querySelectorAll("div.image-description__text a") as NodeListOf<HTMLAnchorElement>;
+        for (const link of links) {
+            descriptionLines.push(link.href);
+        }
+    }
+
+    // 2024-11-02
+    const descriptionContainer2 = document.querySelector("div.image-description");
+
+    if (descriptionContainer2) {
+        descriptionLines.push("-----")
+        const paragraphs = descriptionContainer2.querySelectorAll("div.paragraph");
+        for (const paragraph of paragraphs) {
+            descriptionLines.push(paragraph.textContent || "");
+        }
+
+        const links = descriptionContainer2.querySelectorAll("a") as NodeListOf<HTMLAnchorElement>;
         for (const link of links) {
             descriptionLines.push(link.href);
         }
