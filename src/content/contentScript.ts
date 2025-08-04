@@ -94,6 +94,8 @@ function getSiteTag(): string | undefined {
             return "site:ponybooru";
         case "twibooru.org":
             return "site:twibooru";
+        case "tantabus.ai":
+            return "site:tantabus";
     }
     return undefined;
 }
@@ -110,6 +112,8 @@ function getSitePrefix(): string {
             return "pb";
         case "twibooru.org":
             return "tb";
+        case "tantabus.ai":
+            return "tbai";
     }
     return "";
 }
@@ -189,8 +193,10 @@ function getImageDescription(imageContainer: HTMLElement) {
     const descriptionContainer = document.querySelector("div.image-description__text");
 
     if (descriptionContainer) {
-        descriptionLines.push("-----")
         const descriptionElements = descriptionContainer.children;
+        if (descriptionElements.length > 0) {
+            descriptionLines.push("-----")
+        }
         for (const node of descriptionElements) {
             descriptionLines.push(node.textContent || "");
         }
@@ -205,8 +211,10 @@ function getImageDescription(imageContainer: HTMLElement) {
     const descriptionContainer2 = document.querySelector("div.image-description");
 
     if (descriptionContainer2) {
-        descriptionLines.push("-----")
         const paragraphs = descriptionContainer2.querySelectorAll("div.paragraph");
+        if (paragraphs.length > 0) {
+            descriptionLines.push("-----")
+        }
         for (const paragraph of paragraphs) {
             descriptionLines.push(paragraph.textContent || "");
         }

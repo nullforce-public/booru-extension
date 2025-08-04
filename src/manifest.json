@@ -14,9 +14,10 @@
                 "https://manebooru.art/*",
                 "https://ponybooru.org/*",
                 "https://ponerpics.org/*",
-                "https://twibooru.org/*"
+                "https://twibooru.org/*",
+                "https://tantabus.ai/*"
             ],
-            "css": [],
+            "css": [ ],
             "js": [
                 "content/contentScript.ts"
             ],
@@ -30,7 +31,8 @@
                 "https://manebooru.art/*",
                 "https://ponybooru.org/*",
                 "https://ponerpics.org/*",
-                "https://twibooru.org/*"
+                "https://twibooru.org/*",
+                "https://tantabus.ai/*"
             ],
             "resources": [
                 "./content/*"
