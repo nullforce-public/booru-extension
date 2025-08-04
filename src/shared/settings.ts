@@ -4,6 +4,8 @@ export interface ISettings {
     showHighlightTags: boolean;
     headerTags: string[];
     highlightTags: string[];
+    includeTags: string[];
+    excludeTags: string[];
     color: string;
     eagleEnabled: boolean;
     eagleDownloadButton: boolean;
@@ -14,12 +16,15 @@ export interface ISettings {
 
 export async function getSettings(): Promise<ISettings> {
     const defaultColor = "#3aa757";
+
     return chrome.storage.sync.get({
         showArtist: true,
         showTags: true,
         showHighlightTags: true,
         headerTags: [],
         highlightTags: [],
+        includeTags: [],
+        excludeTags: [],
         color: defaultColor,
         eagleEnabled: true,
         eagleDownloadButton: true,
@@ -35,6 +40,8 @@ export async function getSettings(): Promise<ISettings> {
                 showHighlightTags: settings.showHighlightTags,
                 headerTags: settings.headerTags,
                 highlightTags: settings.highlightTags,
+                includeTags: settings.includeTags,
+                excludeTags: settings.excludeTags,
                 color: settings.color,
                 eagleEnabled: settings.eagleEnabled,
                 eagleDownloadButton: settings.eagleDownloadButton,
@@ -53,6 +60,8 @@ export function setSettings(settings: ISettings): Promise<void> {
         showHighlightTags: settings.showHighlightTags,
         headerTags: settings.headerTags,
         highlightTags: settings.highlightTags,
+        includeTags: settings.includeTags,
+        excludeTags: settings.excludeTags,
         color: settings.color,
         eagleEnabled: settings.eagleEnabled,
         eagleDownloadButton: settings.eagleDownloadButton,

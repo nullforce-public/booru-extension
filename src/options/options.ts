@@ -20,6 +20,9 @@ const eagleDownloadFavoriteElement = document.getElementById("eagleDownloadFavor
 const eagleAutoSaveElement = document.getElementById(("eagleAutoSave")) as HTMLInputElement;
 const eagleApiTokenElement = document.getElementById(("eagleApiToken")) as HTMLInputElement;
 
+const includeTagsElement = document.getElementById("includeTags") as HTMLTextAreaElement;
+const excludeTagsElement = document.getElementById("excludeTags") as HTMLTextAreaElement;
+
 // Save options to chrome.storage
 async function saveOptions() {
     const showArtist = showArtistElement.checked;
@@ -40,6 +43,8 @@ async function saveOptions() {
         showHighlightTags,
         headerTags: headerTags.split("\n"),
         highlightTags: highlightTags.split("\n"),
+        includeTags: includeTagsElement.value.split("\n"),
+        excludeTags: excludeTagsElement.value.split("\n"),
         color: "#3aa757",
         eagleEnabled,
         eagleDownloadButton,
@@ -69,9 +74,9 @@ async function loadOptions() {
 
     headerTagsElement.value = settings.headerTags.join("\n");
     highlightTagsElement.value = settings.highlightTags.join("\n");
+    includeTagsElement.value = settings.includeTags.join("\n")
+    excludeTagsElement.value = settings.excludeTags.join("\n")
 
-    eagleEnabledElement.checked = settings.eagleEnabled;
-    eagleDownloadButtonElement.checked = settings.eagleDownloadButton;
     eagleDownloadFavoriteElement.checked = settings.eagleDownloadFavorite;
     eagleAutoSaveElement.checked = settings.eagleAutoSave;
     eagleApiTokenElement.value = settings.eagleApiToken;
@@ -115,5 +120,28 @@ function constructOptions(buttonColors: string[]) {
 
 document.addEventListener("DOMContentLoaded", loadOptions);
 document.getElementById("save").addEventListener("click", saveOptions);
+
+// Tab switching logic
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', function () {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+            tab.classList.add('active');
+            const target = document.getElementById('tab-' + tab.getAttribute('data-tab'));
+            if (target) target.classList.add('active');
+        });
+    });
+
+    // Display extension version from manifest.json
+    fetch(chrome.runtime.getURL('manifest.json'))
+        .then(response => response.json())
+        .then(manifest => {
+            const versionSpan = document.getElementById('version');
+            if (versionSpan) {
+                versionSpan.textContent = manifest.version;
+            }
+        });
+});
 
 constructOptions(presetButtonColors);

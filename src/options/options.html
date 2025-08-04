@@ -7,81 +7,112 @@
 </head>
 
 <body>
-    <h1>Booru Options</h1>
-    <p>
-        <label>
-            <input id="showArtist" type="checkbox">
-            Show artist(s)
-        </label>
-    </p>
-    <p>
-        <label>
-            <input id="showTags" type="checkbox">
-            Show tags
-        </label>
-    </p>
-    <p>
-        <label>
-            <input id="showHighlightTags" type="checkbox">
-            Show highlight tags
-        </label>
-    </p>
-    <p>
-        <label>
-            Tags to show in header (one per line):<br />
-            <textarea id="headerTags" rows="10"></textarea>
-        </label>
-    </p>
-    <p>
-        <label>
-            Highlight tags color:
-            <div id="buttonDiv"></div>
-        </label>
-    </p>
-    <p>
-        <label>
-            Highlight tags (one per line):<br />
-            <textarea id="highlightTags" rows="5"></textarea>
-        </label>
-    </p>
+    <div class="tabs">
+        <button class="tab active" data-tab="settings">Settings</button>
+        <button class="tab" data-tab="tags">Tags</button>
+        <button class="tab" data-tab="eagle">Eagle</button>
+    </div>
 
-    <h1>Eagle Options</h1>
-    <p>
-        <label>
-            <input id="eagleEnabled" type="checkbox" checked="true">
-            Enable Eagle Integration
-        </label>
-    </p>
-    <p>
-        <label>
-            <input id="eagleDownloadButton" type="checkbox" checked="true">
-            Show Eagle download button
-        </label>
-    </p>
-    <p>
-        <label>
-            <input id="eagleDownloadFavorite" type="checkbox" checked="true">
-            Download faved image to Eagle
-        </label>
-    </p>
-    <p>
-        <label>
-            <input id="eagleAutoSave" type="checkbox">
-            Auto-save to Eagle
-        </label>
-    </p>
-    <p>
-        <label>
-            <input id="eagleApiToken" type="text" placeholder="API Token">
-        </label>
-    </p>
+    <div class="tab-content active" id="tab-settings">
+        <h2>Booru Options</h2>
+        <p>
+            <label>
+                <input id="showArtist" type="checkbox">
+                Show artist(s)
+            </label>
+        </p>
+        <p>
+            <label>
+                <input id="showTags" type="checkbox">
+                Show tags
+            </label>
+        </p>
+        <p>
+            <label>
+                <input id="showHighlightTags" type="checkbox">
+                Show highlight tags
+            </label>
+        </p>
+        <p>
+            <label>
+                Tags to show in header (one per line):<br />
+                <textarea id="headerTags" rows="10"></textarea>
+            </label>
+        </p>
+        <p>
+            <label>
+                Highlight tags color:
+                <div id="buttonDiv"></div>
+            </label>
+        </p>
+        <p>
+            <label>
+                Highlight tags (one per line):<br />
+                <textarea id="highlightTags" rows="5"></textarea>
+            </label>
+        </p>
+    </div>
+
+    <div class="tab-content" id="tab-eagle">
+        <h2>Eagle Options</h2>
+        <p>
+            <label>
+                <input id="eagleEnabled" type="checkbox" checked="true">
+                Enable Eagle Integration
+            </label>
+        </p>
+        <p>
+            <label>
+                <input id="eagleDownloadButton" type="checkbox" checked="true">
+                Show Eagle download button
+            </label>
+        </p>
+        <p>
+            <label>
+                <input id="eagleDownloadFavorite" type="checkbox" checked="true">
+                Download faved image to Eagle
+            </label>
+        </p>
+        <p>
+            <label>
+                <input id="eagleAutoSave" type="checkbox">
+                Auto-save to Eagle
+            </label>
+        </p>
+        <p>
+            <label>
+                Eagle API Token<br />
+                <input id="eagleApiToken" type="text" placeholder="API Token">
+            </label>
+        </p>
+    </div>
+
+    <div class="tab-content" id="tab-tags">
+        <h2>Always Include/Exclude Tags</h2>
+        <p>
+            <label>
+                Tags to include (one per line):<br />
+                <textarea id="includeTags" rows="6" placeholder="e.g., safe"></textarea>
+            </label>
+        </p>
+        <p>
+            <label>
+                Tags to exclude (one per line):<br />
+                <textarea id="excludeTags" rows="6" placeholder="e.g., useless tag"></textarea>
+            </label>
+        </p>
+    </div>
 
     <div id="status"></div>
-
-    <p>
+    <div style="text-align:right; margin-top:2em;">
         <button id="save">Save</button>
-    </p>
+    </div>
+
+    <div style="text-align:center; margin-top:2em; color:#888; font-size:0.95em;">
+        Version: <span id="version"></span>
+    </div>
 </body>
+
 <script type="module" src="options.ts"></script>
 
 </html>

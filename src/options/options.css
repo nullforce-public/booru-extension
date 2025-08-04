@@ -1,6 +1,56 @@
 body {
     min-width: 300px;
     padding-left: 1em;
+    margin-top: 12px;
+}
+
+/* Tabs UI */
+.tabs {
+    display: flex;
+    border-bottom: 2px solid #e0e0e0;
+    margin-bottom: 0.5em;
+    gap: 0.5em;
+}
+
+.tab {
+    padding: 10px 24px;
+    background: none;
+    border: none;
+    border-radius: 8px 8px 0 0;
+    font-size: 1em;
+    font-weight: 500;
+    color: #555;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    outline: none;
+}
+
+.tab.active {
+    background: #fff;
+    color: #0078d7;
+    border-bottom: 2px solid #0078d7;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.tab:not(.active):hover {
+    background: #f0f4fa;
+    color: #0078d7;
+}
+
+.tab-content {
+    display: none;
+    padding: 0.4em 0 0 0;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+h1,
+h2,
+h3 {
+    margin-top: 0.2em;
+    margin-bottom: 0.5em;
 }
 
 button.colorBtn {
