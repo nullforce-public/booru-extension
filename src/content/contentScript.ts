@@ -361,7 +361,8 @@ async function modifyPage(settings: any): Promise<void> {
 
             const highlight = highlightTags.length > 0;
             if (highlight) {
-                element.style.border = `1px solid ${settings.color}`
+                element.style.border = `2px solid ${settings.color}`;
+                element.style.boxSizing = "border-box";
             }
         }
     }
