@@ -118,15 +118,16 @@ function getSitePrefix(): string {
     return "";
 }
 
-function getTags(element: HTMLElement): string[] {
+function getTags(element: HTMLElement, settings?: ISettings): string[] {
     const keywordsMeta = document.querySelector("meta[name='keywords']") as HTMLMetaElement;
     const tags = keywordsMeta
         ? keywordsMeta.content
         : element.getAttribute("data-image-tag-aliases") || "";
     const tagArray = tags.split(", ").sort();
-    const excludedTags = [
-        "小马"
-    ];
+    let excludedTags = ["小马"];
+    if (settings && Array.isArray(settings.excludeTags)) {
+        excludedTags = excludedTags.concat(settings.excludeTags);
+    }
     const filteredTags = tagArray.filter(x => !excludedTags.includes(x));
     const siteTag = getSiteTag();
 
@@ -231,7 +232,7 @@ function getImageDescription(imageContainer: HTMLElement) {
 async function modifyShowImagePage(settings: ISettings): Promise<void> {
     const imageContainer = document.querySelector("div.image-show-container") as HTMLDivElement;
     const id = getImageId(imageContainer);
-    const tags = getTags(imageContainer);
+    const tags = getTags(imageContainer, settings);
     const uri = getImageUri(imageContainer);
     const source = getBooruUrl();
     const description = getImageDescription(imageContainer);
@@ -321,7 +322,7 @@ async function modifyPage(settings: any): Promise<void> {
         const imageContainer = element.querySelector("div.image-container") as HTMLDivElement;
         console.log("nfDerpi: Image container: " + imageContainer);
         if (imageContainer) {
-            const tags = getTags(imageContainer);
+            const tags = getTags(imageContainer, settings);
             const artistTags = getArtistTags(tags);
             const matchTags = getMatchTags(tags, settings.headerTags);
             const highlightTags = getMatchTags(tags, settings.highlightTags);
